@@ -7,7 +7,7 @@ public class Main {
         ArrayList<Bus> listBus = new ArrayList<Bus>();
         ArrayList<Bus> listBusInPark = new ArrayList<Bus>();
         ArrayList<Bus> listBusOnRoute = new ArrayList<Bus>();
-        
+
     }
 
     public static void addListBus(ArrayList<Bus> listBus) {
@@ -40,6 +40,13 @@ public class Main {
         System.out.println("List all bus");
         for (int i = 0; i < listBus.size(); i++) {
             listBus.get(i).viewBus();
+        }
+    }
+    public static void viewListRoute(ArrayList<Route> listRoute) {
+        System.out.println();
+        System.out.println("List all route ");
+        for (int i = 0; i < listRoute.size(); i++) {
+            listRoute.get(i).viewRoute();
         }
     }
 }
