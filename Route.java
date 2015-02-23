@@ -24,4 +24,8 @@ public class Route {
     public int getAmountBus() {
         return amountBus;
     }
+
+    public void viewRoute() {
+        System.out.println("Number route: " + number + "| Lenght route: " + length + "| Number of buses on the route: " + amountBus);
+    }
 }
