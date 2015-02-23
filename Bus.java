@@ -30,4 +30,8 @@ public class Bus {
     public int getNumberRoute() {
         return numberRoute;
     }
+
+    public void viewBus() {
+        System.out.println("Number bus: " + numberBus + " | Gasoline consumption: " + consumptionGasoline + " | Name Surname: " + nameSurname + " | Number route: " + numberRoute);
+    }
 }
