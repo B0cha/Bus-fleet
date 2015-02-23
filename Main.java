@@ -23,4 +23,15 @@ public class Main {
         Bus bus = new Bus(numberBus,consumptionGasoline,nameSurname,numberRoute);
         listBus.add(bus);
     }
+    public static void addListRoute(ArrayList<Route> listRote) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите номер маршрута");
+        int number = in.nextInt();
+        System.out.println("Введите длину маршрута");
+        double length = in.nextDouble();
+        System.out.println("Введите необходимое количество автобусов для этого маршрута");
+        int amountBus = in.nextInt();
+        Route route = new Route(number, length, amountBus);
+        listRote.add(route);
+    }
 }
