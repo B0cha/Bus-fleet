@@ -10,7 +10,6 @@ public class Main {
     }
 
     public static void addListBus(ArrayList<Bus> listBus) {
-
         Scanner in = new Scanner(System.in);
         Scanner on = new Scanner(System.in);
         System.out.println("Введите номер автобуса");
