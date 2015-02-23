@@ -3,15 +3,21 @@ public class Route {
     /** Number route */
     private int number;
     /** Lenght route */
-    private float length;
+    private double length;
     /** The number of buses on the route */
     private int amountBus;
+
+    public Route(int number, double length, int amountBus) {
+        this.number = number;
+        this.length = length;
+        this.amountBus = amountBus;
+    }
 
     public int getNumber() {
         return number;
     }
 
-    public float getLength() {
+    public double getLength() {
         return length;
     }
 
