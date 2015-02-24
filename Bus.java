@@ -15,6 +15,13 @@ public class Bus {
         this.numberRoute = numberRoute;
     }
 
+    public Bus(Txt txt) {
+        this.numberBus = txt.getNumberBus();
+        this.consumptionGasoline = txt.getConsumptionGasoline();
+        this.nameSurname = txt.getNameSurname();
+        this.numberRoute = txt.getNumberBusRoute();
+    }
+
     public int getNumberBus() {
         return numberBus;
     }
