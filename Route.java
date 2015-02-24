@@ -13,6 +13,12 @@ public class Route {
         this.amountBus = amountBus;
     }
 
+    public Route(Txt txt) throws Exception {
+        this.number = txt.getNumberRoute();
+        this.length = txt.getLengthRoute();
+        this.amountBus = txt.getAmountBusRoute();
+    }
+
     public int getNumber() {
         return number;
     }
