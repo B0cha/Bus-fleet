@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Bus {
     /** Number bus */
     private int numberBus;
@@ -7,6 +9,8 @@ public class Bus {
     private String nameSurname;
     /** Number route */
     private int numberRoute;
+
+    private String status = "В парке";
 
     public Bus(int numberBus, double consumptionGasoline, String nameSurname, int numberRoute) {
         this.numberBus = numberBus;
@@ -40,5 +44,13 @@ public class Bus {
 
     public void viewBus() {
         System.out.println("Number bus: " + numberBus + " | Gasoline consumption: " + consumptionGasoline + " | Name Surname: " + nameSurname + " | Number route: " + numberRoute);
+    }й
+
+    public void setStatusPark () {
+        this.status = "В парке";
     }
+    public void setStatusRoute () {
+        this.status = "На маршруте";
+    }
+
 }
