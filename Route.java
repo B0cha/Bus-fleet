@@ -7,7 +7,7 @@ public class Route {
     /** Lenght route */
     private double length;
     /** The number of buses on the route */
-    private int amountBus;
+    private int minAmountBus;
 
     private int statusAmountBus;
 
@@ -16,13 +16,13 @@ public class Route {
     public Route(int number, double length, int amountBus) {
         this.number = number;
         this.length = length;
-        this.amountBus = amountBus;
+        this.minAmountBus = amountBus;
     }
 
     public Route(Txt txt) throws Exception {
         this.number = txt.getNumberRoute();
         this.length = txt.getLengthRoute();
-        this.amountBus = txt.getAmountBusRoute();
+        this.minAmountBus = txt.getAmountBusRoute();
     }
 
     public int getNumber() {
@@ -33,12 +33,12 @@ public class Route {
         return length;
     }
 
-    public int getAmountBus() {
-        return amountBus;
+    public int getMinAmountBus() {
+        return minAmountBus;
     }
 
     public void viewRoute() {
-        System.out.println("Number route: " + number + "| Lenght route: " + length + "| Number of buses on the route: " + amountBus);
+        System.out.println("Number route: " + number + "| Lenght route: " + length + "| Number of buses on the route: " + minAmountBus);
     }
 
     public int getStatusAmountBus() {
@@ -51,5 +51,13 @@ public class Route {
     }
     public ArrayList<Bus> getBusThisRoute() {
         return busThisRoute;
+    }
+
+    public void adequacyBusesOnRoute() {
+        getStatusAmountBus();
+        if (statusAmountBus < minAmountBus) {
+            System.out.println("Автобусов недостаточно");
+        }
+        else System.out.println("Автобусов достаточно");
     }
 }
