@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Route {
 
     /** Number route */
@@ -6,6 +8,10 @@ public class Route {
     private double length;
     /** The number of buses on the route */
     private int amountBus;
+
+    private int statusAmountBus;
+
+    private ArrayList<Bus> busThisRoute = new ArrayList<Bus>();
 
     public Route(int number, double length, int amountBus) {
         this.number = number;
@@ -33,5 +39,17 @@ public class Route {
 
     public void viewRoute() {
         System.out.println("Number route: " + number + "| Lenght route: " + length + "| Number of buses on the route: " + amountBus);
+    }
+
+    public int getStatusAmountBus() {
+        statusAmountBus = busThisRoute.size();
+        return statusAmountBus;
+    }
+
+    public void addBusRoute(Bus bus) {
+        this.busThisRoute.add(bus);
+    }
+    public ArrayList<Bus> getBusThisRoute() {
+        return busThisRoute;
     }
 }
