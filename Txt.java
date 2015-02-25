@@ -21,7 +21,7 @@ public class Txt {
         trash = in.nextLine();
     }
 
-    public void readFromFile(ArrayList<Route> listRoute, Txt txt, ArrayList<Bus> listBus) throws Exception {
+    public void readFromFile(ArrayList<Route> listRoute, Txt txt, ArrayList<Bus> listBus, ArrayList<Bus> listBusInPark) throws Exception {
         while (in.hasNext()) {
             numberRoute = in.nextInt();
             lengthRoute = in.nextDouble();
@@ -36,6 +36,7 @@ public class Txt {
             nameSurname = on.nextLine().trim();
             Bus bus = new Bus(txt);
             listBus.add(bus);
+            listBusInPark.add(bus);
         }
     }
 

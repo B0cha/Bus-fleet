@@ -12,7 +12,10 @@ public class Main {
         txt.readFromFile(listRoute,txt,listAllBus,listBusInPark);
         viewListRoute(listRoute);
         viewListAllBus(listAllBus);
-        setStatusBus(listBusInPark, listBusOnRoute);
+        setStatusBusOnRoute(listBusInPark, listBusOnRoute);
+        viewListBusInParK(listBusInPark);
+        viewListBusOnRoute(listBusOnRoute);
+        setStatusBusInPark(listBusInPark,listBusOnRoute);
         viewListBusInParK(listBusInPark);
         viewListBusOnRoute(listBusOnRoute);
 
@@ -44,7 +47,6 @@ public class Main {
         listRote.add(route);
     }
     private static void viewListBus(ArrayList<Bus> listBus, String title) {
-        System.out.println();
         System.out.println(title);
         for (int i = 0; i < listBus.size(); i++) {
             listBus.get(i).viewBus();
@@ -70,10 +72,10 @@ public class Main {
         }
     }
 
-    public static void setStatusBus (ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
+    public static void setStatusBusOnRoute(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
         System.out.println("Какой автобус отправить на маршрут ?");
         viewListBusInParK(listBusInPark);
-        System.out.println("выбирите : ");
+        System.out.println("введите номер автобуса какой отправить: ");
         Scanner in = new Scanner(System.in);
         int index = in.nextInt();
         for(int i = 0; i < listBusInPark.size();i++) {
@@ -81,6 +83,22 @@ public class Main {
                 listBusInPark.get(i).setStatusRoute();
                 listBusOnRoute.add(listBusInPark.get(i));
                 listBusInPark.remove(i);
+                break;
+            }
+        }
+    }
+
+    public static void setStatusBusInPark(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
+        System.out.println("Какой автобус отправить в парк ?");
+        viewListBusOnRoute(listBusOnRoute);
+        System.out.println("введите номер автобуса какой отправить: ");
+        Scanner in = new Scanner(System.in);
+        int index = in.nextInt();
+        for(int i = 0; i < listBusOnRoute.size();i++) {
+            if (listBusOnRoute.get(i).getNumberBus() == index) {
+                listBusOnRoute.get(i).setStatusPark();
+                listBusInPark.add(listBusOnRoute.get(i));
+                listBusOnRoute.remove(i);
                 break;
             }
         }

@@ -44,7 +44,7 @@ public class Bus {
 
     public void viewBus() {
         System.out.println("Number bus: " + numberBus + " | Gasoline consumption: " + consumptionGasoline + " | Name Surname: " + nameSurname + " | Number route: " + numberRoute);
-    }й
+    }
 
     public void setStatusPark () {
         this.status = "В парке";
