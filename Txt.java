@@ -35,6 +35,12 @@ public class Txt {
             numberBusRoute = on.nextInt();
             nameSurname = on.nextLine().trim();
             Bus bus = new Bus(txt);
+            for(int i = 0; i < listRoute.size(); i++) {
+                if (listRoute.get(i).getNumber() == bus.getNumberRoute()) {
+                    listRoute.get(i).addBusRoute(bus);
+                    break;
+                }
+            }
             listBus.add(bus);
             listBusInPark.add(bus);
         }
