@@ -2,11 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ArrayList<Route> listRoute = new ArrayList<Route>();
-        ArrayList<Bus> listBus = new ArrayList<Bus>();
+        ArrayList<Bus> listAllBus = new ArrayList<Bus>();
         ArrayList<Bus> listBusInPark = new ArrayList<Bus>();
         ArrayList<Bus> listBusOnRoute = new ArrayList<Bus>();
+
+        Txt txt = new Txt();
+        txt.readFromFile(listRoute,txt,listAllBus,listBusInPark);
+        viewListRoute(listRoute);
+        viewListAllBus(listAllBus);
+        setStatusBus(listBusInPark, listBusOnRoute);
+        viewListBusInParK(listBusInPark);
+        viewListBusOnRoute(listBusOnRoute);
 
     }
 
@@ -35,13 +43,25 @@ public class Main {
         Route route = new Route(number, length, amountBus);
         listRote.add(route);
     }
-    public static void viewListBus(ArrayList<Bus> listBus) {
+    private static void viewListBus(ArrayList<Bus> listBus, String title) {
         System.out.println();
-        System.out.println("List all bus");
+        System.out.println(title);
         for (int i = 0; i < listBus.size(); i++) {
             listBus.get(i).viewBus();
         }
     }
+
+    public static void viewListAllBus(ArrayList<Bus> listBus) {
+        viewListBus(listBus,"List all bus");
+    }
+
+    public static void viewListBusInParK(ArrayList<Bus> listBus) {
+        viewListBus(listBus,"List bus in park");
+    }
+    public static void viewListBusOnRoute(ArrayList<Bus> listBus) {
+        viewListBus(listBus,"List bus on route");
+    }
+
     public static void viewListRoute(ArrayList<Route> listRoute) {
         System.out.println();
         System.out.println("List all route ");
@@ -49,4 +69,21 @@ public class Main {
             listRoute.get(i).viewRoute();
         }
     }
+
+    public static void setStatusBus (ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
+        System.out.println("Какой автобус отправить на маршрут ?");
+        viewListBusInParK(listBusInPark);
+        System.out.println("выбирите : ");
+        Scanner in = new Scanner(System.in);
+        int index = in.nextInt();
+        for(int i = 0; i < listBusInPark.size();i++) {
+            if (listBusInPark.get(i).getNumberBus() == index) {
+                listBusInPark.get(i).setStatusRoute();
+                listBusOnRoute.add(listBusInPark.get(i));
+                listBusInPark.remove(i);
+                break;
+            }
+        }
+    }
+
 }
