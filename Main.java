@@ -12,13 +12,23 @@ public class Main {
         txt.readFromFile(listRoute,txt,listAllBus,listBusInPark);
         viewListRoute(listRoute);
         viewListAllBus(listAllBus);
+
+        searchDriver(listAllBus);
+
+        /*for(int i = 0; i <listRoute.size();i++ ) {
+            listRoute.get(i).adequacyBusesOnRoute();
+        }*/
+
+       /* for(int i = 0; i <listRoute.size();i++ ) {
+            System.out.println("Количество автобусов на маршруте №" +listRoute.get(i).getNumber() + ": " + listRoute.get(i).getStatusAmountBus());
+        }*/
+
+        /*setStatusBusOnRoute(listBusInPark, listBusOnRoute);
         setStatusBusOnRoute(listBusInPark, listBusOnRoute);
-        viewListBusInParK(listBusInPark);
-        viewListBusOnRoute(listBusOnRoute);
         setStatusBusInPark(listBusInPark,listBusOnRoute);
         viewListBusInParK(listBusInPark);
         viewListBusOnRoute(listBusOnRoute);
-
+*/
     }
 
     public static void addListBus(ArrayList<Bus> listBus) {
@@ -100,6 +110,18 @@ public class Main {
                 listBusInPark.add(listBusOnRoute.get(i));
                 listBusOnRoute.remove(i);
                 break;
+            }
+        }
+    }
+
+    public static void searchDriver(ArrayList<Bus> listAllBus){
+        Scanner str = new Scanner(System.in);
+        System.out.println("Введите Фамилию Имя водителя которого хотите найти ");
+        String name = str.nextLine();
+        for(int i = 0; i < listAllBus.size(); i++) {
+            if (name.equals(listAllBus.get(i).getNameSurname())) {
+                System.out.println("Его автобус с номером: " + listAllBus.get(i).getNumberBus());
+                System.out.println("Его маршрут: " + listAllBus.get(i).getNumberRoute());
             }
         }
     }
