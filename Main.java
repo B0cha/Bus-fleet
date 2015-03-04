@@ -13,6 +13,7 @@ public class Main {
         viewListRoute(listRoute);
         viewListAllBus(listAllBus);
 
+        //allGasolineCostsOnRoutes(listRoute);
         gasolineCostsOnRoute(listRoute);
 
         /*searchDriver(listAllBus);*/
@@ -139,19 +140,20 @@ public class Main {
 
     public static void gasolineCostsOnRoute(ArrayList<Route> listRoute) {
         double sum=0;
+        double allSum=0;
         Scanner in = new Scanner(System.in);
         System.out.println("Выбирите номер маршрута");
         int abc = in.nextInt();
         for (int i = 0; i < listRoute.size(); i++) {
-            if (abc == listRoute.get(i).getNumber()) {
-                for(int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++) {
+            for (int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++) {
+                allSum += (listRoute.get(i).getLength()/100)*listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
+                if (abc == listRoute.get(i).getNumber()) {
                     sum += (listRoute.get(i).getLength()/100)*listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
                 }
             }
         }
-        System.out.println("Общие затраты на бензин  " + sum);
+        System.out.println("Общие затраты на бензин  " + allSum);
+        System.out.println("Затраты на бензин на маршруте '" + abc + "' = " + sum);
 
     }
-
-
 }
