@@ -37,6 +37,7 @@ public class Main {
                     addListBus(listAllBus);
                     break;
                 case "f":
+                    minBusesOnRoute(listRoute);
                     break;
                 case "g":
                     searchDriver(listAllBus);
@@ -187,5 +188,16 @@ public class Main {
                 "g) поиск по фамилии водителя соответствующего ему автобуса и маршрута \n" +
                 "h) определение затрат бензина на всех маршрутах и отдельно для каждого.\n" +
                 "quit) выход");
+    }
+
+    public static void minBusesOnRoute(ArrayList<Route> listRoute) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите номер маршрута");
+        int numberRoute = in.nextInt();
+        for (int i = 0; i < listRoute.size(); i++) {
+            if (numberRoute == listRoute.get(i).getNumber()) {
+                listRoute.get(i).adequacyBusesOnRoute();
+            }
+        }
     }
 }
