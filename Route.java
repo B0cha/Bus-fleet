@@ -55,6 +55,7 @@ public class Route {
 
     public void adequacyBusesOnRoute() {
         getStatusAmountBus();
+        System.out.println("Количество автобусов на маршруте : " + statusAmountBus);
         if (statusAmountBus < minAmountBus) {
             System.out.println("Автобусов недостаточно");
         }
