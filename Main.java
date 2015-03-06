@@ -34,7 +34,7 @@ public class Main {
                     addListRoute(listRoute);
                     break;
                 case "e":
-                    addListBus(listAllBus);
+                    addListBus(listAllBus,listBusInPark);
                     break;
                 case "f":
                     minBusesOnRoute(listRoute);
@@ -55,19 +55,20 @@ public class Main {
 
     }
 
-    public static void addListBus(ArrayList<Bus> listBus) {
+    public static void addListBus(ArrayList<Bus> listBus,ArrayList<Bus> listBusInPark) {
         Scanner in = new Scanner(System.in);
         Scanner on = new Scanner(System.in);
-        System.out.println("Введите номер автобуса");
+        System.out.println("Введите номер нового автобуса ");
         int numberBus = in.nextInt();
-        System.out.println("Введите расход автобуса");
+        System.out.println("Введите расход этого автобуса");
         double consumptionGasoline = in.nextDouble();
-        System.out.println("Введите фамилию имя водителя");
+        System.out.println("Введите фамилию имя водителя автобуса");
         String nameSurname = on.nextLine();
         System.out.println("Введите номер маршрута");
         int numberRoute = in.nextInt();
         Bus bus = new Bus(numberBus,consumptionGasoline,nameSurname,numberRoute);
         listBus.add(bus);
+        listBusInPark.add(bus);
     }
     public static void addListRoute(ArrayList<Route> listRote) {
         Scanner in = new Scanner(System.in);
@@ -179,6 +180,7 @@ public class Main {
     }
 
     public static void puts() {
+        System.out.println();
         System.out.println("a) добавление автобуса из парка в список выехавших на маршрут\n" +
                 "b) исключение автобуса из списка выехавших на маршрут и возвращение его в парк \n" +
                 "c) просмотр содержимого любого списка\n" +
