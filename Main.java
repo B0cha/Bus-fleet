@@ -10,28 +10,48 @@ public class Main {
 
         Txt txt = new Txt();
         txt.readFromFile(listRoute,txt,listAllBus,listBusInPark);
-        viewListRoute(listRoute);
-        viewListAllBus(listAllBus);
 
-        //allGasolineCostsOnRoutes(listRoute);
-        gasolineCostsOnRoute(listRoute);
+        int a = 0;
+        while(a < 1) {
+            Scanner put = new Scanner(System.in);
+            puts();
+            System.out.println("Выбирите команду :");
+            String out = put.nextLine();
+            switch (out) {
+                case "a":
+                    setStatusBusOnRoute(listBusInPark, listBusOnRoute);
+                    break;
+                case "b":
+                    setStatusBusInPark(listBusInPark, listBusOnRoute);
+                    break;
+                case "c":
+                    viewListAllBus(listAllBus);
+                    viewListBusInParK(listBusInPark);
+                    viewListBusOnRoute(listBusOnRoute);
+                    viewListRoute(listRoute);
+                    break;
+                case "d":
+                    addListRoute(listRoute);
+                    break;
+                case "e":
+                    addListBus(listAllBus);
+                    break;
+                case "f":
+                    break;
+                case "g":
+                    searchDriver(listAllBus);
+                    break;
+                case "h":
+                    gasolineCostsOnRoute(listRoute);
+                    break;
+                case "quit":
+                    a++;
+                    break;
 
-        /*searchDriver(listAllBus);*/
+            }
+        }
 
-        /*for(int i = 0; i <listRoute.size();i++ ) {
-            listRoute.get(i).adequacyBusesOnRoute();
-        }*/
 
-       /* for(int i = 0; i <listRoute.size();i++ ) {
-            System.out.println("Количество автобусов на маршруте №" +listRoute.get(i).getNumber() + ": " + listRoute.get(i).getStatusAmountBus());
-        }*/
-
-        /*setStatusBusOnRoute(listBusInPark, listBusOnRoute);
-        setStatusBusOnRoute(listBusInPark, listBusOnRoute);
-        setStatusBusInPark(listBusInPark,listBusOnRoute);
-        viewListBusInParK(listBusInPark);
-        viewListBusOnRoute(listBusOnRoute);
-*/
     }
 
     public static void addListBus(ArrayList<Bus> listBus) {
@@ -155,5 +175,17 @@ public class Main {
         System.out.println("Общие затраты на бензин  " + allSum);
         System.out.println("Затраты на бензин на маршруте '" + abc + "' = " + sum);
 
+    }
+
+    public static void puts() {
+        System.out.println("a) добавление автобуса из парка в список выехавших на маршрут\n" +
+                "b) исключение автобуса из списка выехавших на маршрут и возвращение его в парк \n" +
+                "c) просмотр содержимого любого списка\n" +
+                "d) добавление маршрута\n" +
+                "e) добавление автобуса\n" +
+                ") достаточность автобусов на заданном маршруте\n" +
+                "g) поиск по фамилии водителя соответствующего ему автобуса и маршрута \n" +
+                "h) определение затрат бензина на всех маршрутах и отдельно для каждого.\n" +
+                "quit) выход");
     }
 }
