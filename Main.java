@@ -25,10 +25,26 @@ public class Main {
                     setStatusBusInPark(listBusInPark, listBusOnRoute);
                     break;
                 case "c":
-                    viewListAllBus(listAllBus);
-                    viewListBusInParK(listBusInPark);
-                    viewListBusOnRoute(listBusOnRoute);
-                    viewListRoute(listRoute);
+                    System.out.println("Выбирите список: \n" +
+                            "1) Полный список всех автобусов\n" +
+                            "2) Список автобусов в парке\n" +
+                            "3) Список автобусов на маршруте\n" +
+                            "4) Cписок маршрутов");
+                    int loko = put.nextInt();
+                    switch (loko) {
+                        case 1:
+                            viewListAllBus(listAllBus);
+                            break;
+                        case 2:
+                            viewListBusInParK(listBusInPark);
+                            break;
+                        case 3:
+                            viewListBusOnRoute(listBusOnRoute);
+                            break;
+                        case 4:
+                            viewListRoute(listRoute);
+                            break;
+                    }
                     break;
                 case "d":
                     addListRoute(listRoute);
@@ -48,7 +64,8 @@ public class Main {
                 case "quit":
                     a++;
                     break;
-
+                default:
+                    System.out.println("Нет такой команды, повторите ввод");
             }
         }
 
@@ -56,30 +73,38 @@ public class Main {
     }
 
     public static void addListBus(ArrayList<Bus> listBus,ArrayList<Bus> listBusInPark) {
-        Scanner in = new Scanner(System.in);
-        Scanner on = new Scanner(System.in);
-        System.out.println("Введите номер нового автобуса ");
-        int numberBus = in.nextInt();
-        System.out.println("Введите расход этого автобуса");
-        double consumptionGasoline = in.nextDouble();
-        System.out.println("Введите фамилию имя водителя автобуса");
-        String nameSurname = on.nextLine();
-        System.out.println("Введите номер маршрута");
-        int numberRoute = in.nextInt();
-        Bus bus = new Bus(numberBus,consumptionGasoline,nameSurname,numberRoute);
-        listBus.add(bus);
-        listBusInPark.add(bus);
+        try {
+            Scanner in = new Scanner(System.in);
+            Scanner on = new Scanner(System.in);
+            System.out.println("Введите номер нового автобуса ");
+            int numberBus = in.nextInt();
+            System.out.println("Введите расход этого автобуса");
+            double consumptionGasoline = in.nextDouble();
+            System.out.println("Введите фамилию имя водителя автобуса");
+            String nameSurname = on.nextLine();
+            System.out.println("Введите номер маршрута");
+            int numberRoute = in.nextInt();
+            Bus bus = new Bus(numberBus, consumptionGasoline, nameSurname, numberRoute);
+            listBus.add(bus);
+            listBusInPark.add(bus);
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
+        }
     }
     public static void addListRoute(ArrayList<Route> listRote) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите номер маршрута");
-        int number = in.nextInt();
-        System.out.println("Введите длину маршрута");
-        double length = in.nextDouble();
-        System.out.println("Введите необходимое количество автобусов для этого маршрута");
-        int amountBus = in.nextInt();
-        Route route = new Route(number, length, amountBus);
-        listRote.add(route);
+        try {
+            System.out.println("Введите номер маршрута");
+            int number = in.nextInt();
+            System.out.println("Введите длину маршрута");
+            double length = in.nextDouble();
+            System.out.println("Введите необходимое количество автобусов для этого маршрута");
+            int amountBus = in.nextInt();
+            Route route = new Route(number, length, amountBus);
+            listRote.add(route);
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
+        }
     }
     private static void viewListBus(ArrayList<Bus> listBus, String title) {
         System.out.println(title);
@@ -112,12 +137,18 @@ public class Main {
         viewListBusInParK(listBusInPark);
         System.out.println("введите номер автобуса какой отправить: ");
         Scanner in = new Scanner(System.in);
-        int index = in.nextInt();
+        int index = -1;
+        try {
+            index = in.nextInt();
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
+        }
         for(int i = 0; i < listBusInPark.size();i++) {
             if (listBusInPark.get(i).getNumberBus() == index) {
                 listBusInPark.get(i).setStatusRoute();
                 listBusOnRoute.add(listBusInPark.get(i));
                 listBusInPark.remove(i);
+                System.out.println("Автобус успешно отправлен!");
                 break;
             }
         }
@@ -128,12 +159,19 @@ public class Main {
         viewListBusOnRoute(listBusOnRoute);
         System.out.println("введите номер автобуса какой отправить: ");
         Scanner in = new Scanner(System.in);
-        int index = in.nextInt();
+        int index = -1;
+        try {
+            index = in.nextInt();
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
+        }
+
         for(int i = 0; i < listBusOnRoute.size();i++) {
             if (listBusOnRoute.get(i).getNumberBus() == index) {
                 listBusOnRoute.get(i).setStatusPark();
                 listBusInPark.add(listBusOnRoute.get(i));
                 listBusOnRoute.remove(i);
+                System.out.println("Автобус успешно отправлен!");
                 break;
             }
         }
@@ -147,8 +185,13 @@ public class Main {
             if (name.equals(listAllBus.get(i).getNameSurname())) {
                 System.out.println("Его автобус с номером: " + listAllBus.get(i).getNumberBus());
                 System.out.println("Его маршрут: " + listAllBus.get(i).getNumberRoute());
+                return;
+            }
+            if (i == listAllBus.size()- 1) {
+                System.out.println("Нет такого водителя");
             }
         }
+
     }
 
     public static void gasolineCosts(ArrayList<Route> listRoute) {
@@ -163,19 +206,23 @@ public class Main {
     public static void gasolineCostsOnRoute(ArrayList<Route> listRoute) {
         double sum=0;
         double allSum=0;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Выбирите номер маршрута");
-        int abc = in.nextInt();
-        for (int i = 0; i < listRoute.size(); i++) {
-            for (int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++) {
-                allSum += (listRoute.get(i).getLength()/100)*listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
-                if (abc == listRoute.get(i).getNumber()) {
-                    sum += (listRoute.get(i).getLength()/100)*listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
+        try {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Выбирите номер маршрута");
+            int numberRoute = in.nextInt();
+            for (int i = 0; i < listRoute.size(); i++) {
+                for (int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++) {
+                    allSum += (listRoute.get(i).getLength() / 100) * listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
+                    if (numberRoute == listRoute.get(i).getNumber()) {
+                        sum += (listRoute.get(i).getLength() / 100) * listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
+                    }
                 }
             }
+            System.out.println("Общие затраты на бензин  " + allSum);
+            System.out.println("Затраты на бензин на маршруте '" + numberRoute + "' = " + sum);
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
         }
-        System.out.println("Общие затраты на бензин  " + allSum);
-        System.out.println("Затраты на бензин на маршруте '" + abc + "' = " + sum);
 
     }
 
@@ -193,13 +240,17 @@ public class Main {
     }
 
     public static void minBusesOnRoute(ArrayList<Route> listRoute) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите номер маршрута");
-        int numberRoute = in.nextInt();
-        for (int i = 0; i < listRoute.size(); i++) {
-            if (numberRoute == listRoute.get(i).getNumber()) {
-                listRoute.get(i).adequacyBusesOnRoute();
+        try {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Введите номер маршрута");
+            int numberRoute = in.nextInt();
+            for (int i = 0; i < listRoute.size(); i++) {
+                if (numberRoute == listRoute.get(i).getNumber()) {
+                    listRoute.get(i).adequacyBusesOnRoute();
+                }
             }
+        } catch (Exception e) {
+            System.out.println(" Incorrect input try again later ");
         }
     }
 }
