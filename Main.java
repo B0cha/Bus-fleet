@@ -25,30 +25,7 @@ public class Main {
                     setStatusBusInPark(listBusInPark, listBusOnRoute);
                     break;
                 case "c":
-                    System.out.println("Select list : \n" +
-                            "1) Complete list of all buses\n" +
-                            "2) List of buses in the park\n" +
-                            "3) List of bus route\n" +
-                            "4) List of routes");
-                    try {
-                        int loko = put.nextInt();
-                        switch (loko) {
-                            case 1:
-                                viewListAllBus(listAllBus);
-                                break;
-                            case 2:
-                                viewListBusInParK(listBusInPark);
-                                break;
-                            case 3:
-                                viewListBusOnRoute(listBusOnRoute);
-                                break;
-                            case 4:
-                                viewListRoute(listRoute);
-                                break;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Incorrect input try again later");
-                    }
+                    viewTheContentsOfAnyList(listAllBus,listBusInPark,listBusOnRoute,listRoute);
                     break;
                 case "d":
                     addListRoute(listRoute);
@@ -247,6 +224,36 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println(" Incorrect input try again later ");
+        }
+    }
+
+    public static void viewTheContentsOfAnyList(ArrayList<Bus> listAllBus, ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute, ArrayList<Route> listRoute) {
+        Scanner put = new Scanner(System.in);
+        System.out.println("Select list : \n" +
+                "1) Complete list of all buses\n" +
+                "2) List of buses in the park\n" +
+                "3) List of bus route\n" +
+                "4) List of routes");
+        try {
+            int loko = put.nextInt();
+            switch (loko) {
+                case 1:
+                    viewListAllBus(listAllBus);
+                    break;
+                case 2:
+                    viewListBusInParK(listBusInPark);
+                    break;
+                case 3:
+                    viewListBusOnRoute(listBusOnRoute);
+                    break;
+                case 4:
+                    viewListRoute(listRoute);
+                    break;
+                default:
+                    System.out.println("There is no such team retype");
+            }
+        } catch (Exception e) {
+            System.out.println("Incorrect input try again later");
         }
     }
 }
