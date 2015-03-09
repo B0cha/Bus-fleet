@@ -4,14 +4,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Txt {
+    /** Reading information from a file with routes */
     private Scanner in;
+    /** Reading information from a file with bus */
     private Scanner on;
+    /** Number route */
     private int numberRoute;
+    /** length route */
     private double lengthRoute;
+    /** Amount bus on the route */
     private int amountBusRoute;
+    /** Number bus */
     private int numberBus;
+    /** Gasoline consumption in liters per kilometer  */
     private double consumptionGasoline;
+    /** Name and surname drivers bus */
     private String nameSurname;
+    /** Number route bus */
     private int numberBusRoute;
 
     public Txt() throws FileNotFoundException {
@@ -20,7 +29,7 @@ public class Txt {
         String trash = on.nextLine();
         trash = in.nextLine();
     }
-
+    /** Reading information buses and routes of two files */
     public void readFromFile(ArrayList<Route> listRoute, Txt txt, ArrayList<Bus> listBus, ArrayList<Bus> listBusInPark) throws Exception {
         while (in.hasNext()) {
             try {
@@ -55,31 +64,31 @@ public class Txt {
             }
         }
     }
-
+    /** Get amount bus route */
     public int getAmountBusRoute() {
         return amountBusRoute;
     }
-
+    /** Get length route */
     public double getLengthRoute() {
         return lengthRoute;
     }
-
+    /** Get number route */
     public int getNumberRoute() {
         return numberRoute;
     }
-
+    /** Get number bus */
     public int getNumberBus() {
         return numberBus;
     }
-
+    /** Get consumption gasoline */
     public double getConsumptionGasoline() {
         return consumptionGasoline;
     }
-
+    /** Get name and surname drivers bus */
     public String getNameSurname() {
         return nameSurname;
     }
-
+    /** Get number bus route */
     public int getNumberBusRoute() {
         return numberBusRoute;
     }

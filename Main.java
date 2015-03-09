@@ -7,7 +7,6 @@ public class Main {
         ArrayList<Bus> listAllBus = new ArrayList<Bus>();
         ArrayList<Bus> listBusInPark = new ArrayList<Bus>();
         ArrayList<Bus> listBusOnRoute = new ArrayList<Bus>();
-
         Txt txt = new Txt();
         txt.readFromFile(listRoute,txt,listAllBus,listBusInPark);
 
@@ -49,10 +48,9 @@ public class Main {
                     System.out.println("There is no such team retype");
             }
         }
-
-
     }
 
+    /** The creation of a new bus and adding it to the list */
     public static void addListBus(ArrayList<Bus> listBus,ArrayList<Bus> listBusInPark) {
         try {
             Scanner in = new Scanner(System.in);
@@ -73,6 +71,7 @@ public class Main {
             System.out.println(" Incorrect input try again later ");
         }
     }
+    /** The creation of a new route and add it to the list */
     public static void addListRoute(ArrayList<Route> listRote) {
         Scanner in = new Scanner(System.in);
         try {
@@ -89,24 +88,26 @@ public class Main {
             System.out.println(" Incorrect input try again later ");
         }
     }
+    /** Showing different lists buses */
     private static void viewListBus(ArrayList<Bus> listBus, String title) {
         System.out.println(title);
         for (int i = 0; i < listBus.size(); i++) {
             listBus.get(i).viewBus();
         }
     }
-
+    /** Title to all buses */
     public static void viewListAllBus(ArrayList<Bus> listBus) {
         viewListBus(listBus,"List all bus");
     }
-
+    /** Title to bus in park */
     public static void viewListBusInParK(ArrayList<Bus> listBus) {
         viewListBus(listBus,"List bus in park");
     }
+    /** Title to bus on route */
     public static void viewListBusOnRoute(ArrayList<Bus> listBus) {
         viewListBus(listBus,"List bus on route");
     }
-
+    /** Showing the route list */
     public static void viewListRoute(ArrayList<Route> listRoute) {
         System.out.println();
         System.out.println("List all route ");
@@ -114,7 +115,7 @@ public class Main {
             listRoute.get(i).viewRoute();
         }
     }
-
+    /** The bus departs from the park to the route */
     public static void setStatusBusOnRoute(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
         System.out.println("Which bus to send the route ?");
         viewListBusInParK(listBusInPark);
@@ -136,7 +137,7 @@ public class Main {
             }
         }
     }
-
+    /** Return to the bus route in the park */
     public static void setStatusBusInPark(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
         System.out.println("Which bus to go to the park ?");
         viewListBusOnRoute(listBusOnRoute);
@@ -159,7 +160,7 @@ public class Main {
             }
         }
     }
-
+    /** Search for driver information and display it */
     public static void searchDriver(ArrayList<Bus> listAllBus){
         Scanner str = new Scanner(System.in);
         System.out.println("Enter last name of the driver you want to search ");
@@ -175,7 +176,7 @@ public class Main {
             }
         }
     }
-
+    /** Fuel consumption on certain routes and at all */
     public static void gasolineCostsOnRoute(ArrayList<Route> listRoute) {
         double sum = 0;
         double allSum = 0;
@@ -198,7 +199,7 @@ public class Main {
         }
 
     }
-
+    /** Displays the user menu */
     public static void menu() {
         System.out.println();
         System.out.println("a) добавление автобуса из парка в список выехавших на маршрут\n" +
@@ -211,7 +212,7 @@ public class Main {
                 "h) определение затрат бензина на всех маршрутах и отдельно для каждого.\n" +
                 "quit) выход");
     }
-
+    /** Determination of the sufficiency of the bus route */
     public static void minBusesOnRoute(ArrayList<Route> listRoute) {
         try {
             Scanner in = new Scanner(System.in);
@@ -226,7 +227,7 @@ public class Main {
             System.out.println(" Incorrect input try again later ");
         }
     }
-
+    /** Showing of any list*/
     public static void viewTheContentsOfAnyList(ArrayList<Bus> listAllBus, ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute, ArrayList<Route> listRoute) {
         Scanner put = new Scanner(System.in);
         System.out.println("Select list : \n" +
