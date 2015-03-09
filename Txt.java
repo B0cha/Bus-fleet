@@ -23,26 +23,36 @@ public class Txt {
 
     public void readFromFile(ArrayList<Route> listRoute, Txt txt, ArrayList<Bus> listBus, ArrayList<Bus> listBusInPark) throws Exception {
         while (in.hasNext()) {
-            numberRoute = in.nextInt();
-            lengthRoute = in.nextDouble();
-            amountBusRoute = in.nextInt();
-            Route route = new Route(txt);
-            listRoute.add(route);
+            try {
+                numberRoute = in.nextInt();
+                lengthRoute = in.nextDouble();
+                amountBusRoute = in.nextInt();
+                Route route = new Route(txt);
+                listRoute.add(route);
+            } catch (Exception e) {
+                System.out.println("No valid data file ");
+                System.exit(0);
+            }
         }
         while (on.hasNext()) {
-            numberBus = on.nextInt();
-            consumptionGasoline = on.nextDouble();
-            numberBusRoute = on.nextInt();
-            nameSurname = on.nextLine().trim();
-            Bus bus = new Bus(txt);
-            for(int i = 0; i < listRoute.size(); i++) {
-                if (listRoute.get(i).getNumber() == bus.getNumberRoute()) {
-                    listRoute.get(i).addBusRoute(bus);
-                    break;
+            try {
+                numberBus = on.nextInt();
+                consumptionGasoline = on.nextDouble();
+                numberBusRoute = on.nextInt();
+                nameSurname = on.nextLine().trim();
+                Bus bus = new Bus(txt);
+                for (int i = 0; i < listRoute.size(); i++) {
+                    if (listRoute.get(i).getNumber() == bus.getNumberRoute()) {
+                        listRoute.get(i).addBusRoute(bus);
+                        break;
+                    }
                 }
+                listBus.add(bus);
+                listBusInPark.add(bus);
+            }catch (Exception e) {
+                System.out.println(" No valid data file ");
+                System.exit(0);
             }
-            listBus.add(bus);
-            listBusInPark.add(bus);
         }
     }
 

@@ -14,8 +14,8 @@ public class Main {
         int a = 0;
         while(a < 1) {
             Scanner put = new Scanner(System.in);
-            puts();
-            System.out.println("Выбирите команду :");
+            menu();
+            System.out.println("Enter the following command :");
             String out = put.nextLine();
             switch (out) {
                 case "a":
@@ -25,11 +25,11 @@ public class Main {
                     setStatusBusInPark(listBusInPark, listBusOnRoute);
                     break;
                 case "c":
-                    System.out.println("Выбирите список: \n" +
-                            "1) Полный список всех автобусов\n" +
-                            "2) Список автобусов в парке\n" +
-                            "3) Список автобусов на маршруте\n" +
-                            "4) Cписок маршрутов");
+                    System.out.println("Select list : \n" +
+                            "1) Complete list of all buses\n" +
+                            "2) List of buses in the park\n" +
+                            "3) List of bus route\n" +
+                            "4) List of routes");
                     int loko = put.nextInt();
                     switch (loko) {
                         case 1:
@@ -65,7 +65,7 @@ public class Main {
                     a++;
                     break;
                 default:
-                    System.out.println("Нет такой команды, повторите ввод");
+                    System.out.println("There is no such team retype");
             }
         }
 
@@ -76,13 +76,14 @@ public class Main {
         try {
             Scanner in = new Scanner(System.in);
             Scanner on = new Scanner(System.in);
-            System.out.println("Введите номер нового автобуса ");
+            System.out.println("Creating a bus ...");
+            System.out.println("Enter the number of new bus ");
             int numberBus = in.nextInt();
-            System.out.println("Введите расход этого автобуса");
+            System.out.println("Enter the consumption of the bus");
             double consumptionGasoline = in.nextDouble();
-            System.out.println("Введите фамилию имя водителя автобуса");
+            System.out.println("Enter the name of the name of the bus driver");
             String nameSurname = on.nextLine();
-            System.out.println("Введите номер маршрута");
+            System.out.println("Enter the number of the route");
             int numberRoute = in.nextInt();
             Bus bus = new Bus(numberBus, consumptionGasoline, nameSurname, numberRoute);
             listBus.add(bus);
@@ -94,11 +95,12 @@ public class Main {
     public static void addListRoute(ArrayList<Route> listRote) {
         Scanner in = new Scanner(System.in);
         try {
-            System.out.println("Введите номер маршрута");
+            System.out.println("Create a route ...");
+            System.out.println("Enter the number of the route");
             int number = in.nextInt();
-            System.out.println("Введите длину маршрута");
+            System.out.println("Enter the length of the route");
             double length = in.nextDouble();
-            System.out.println("Введите необходимое количество автобусов для этого маршрута");
+            System.out.println("Enter the required number of buses for this route");
             int amountBus = in.nextInt();
             Route route = new Route(number, length, amountBus);
             listRote.add(route);
@@ -133,9 +135,9 @@ public class Main {
     }
 
     public static void setStatusBusOnRoute(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
-        System.out.println("Какой автобус отправить на маршрут ?");
+        System.out.println("Which bus to send the route ?");
         viewListBusInParK(listBusInPark);
-        System.out.println("введите номер автобуса какой отправить: ");
+        System.out.println("Enter the number of the bus which sent: ");
         Scanner in = new Scanner(System.in);
         int index = -1;
         try {
@@ -148,16 +150,16 @@ public class Main {
                 listBusInPark.get(i).setStatusRoute();
                 listBusOnRoute.add(listBusInPark.get(i));
                 listBusInPark.remove(i);
-                System.out.println("Автобус успешно отправлен!");
+                System.out.println("Bus successfully sent !");
                 break;
             }
         }
     }
 
     public static void setStatusBusInPark(ArrayList<Bus> listBusInPark, ArrayList<Bus> listBusOnRoute) {
-        System.out.println("Какой автобус отправить в парк ?");
+        System.out.println("Which bus to go to the park ?");
         viewListBusOnRoute(listBusOnRoute);
-        System.out.println("введите номер автобуса какой отправить: ");
+        System.out.println("Enter the number of the bus which sent: ");
         Scanner in = new Scanner(System.in);
         int index = -1;
         try {
@@ -171,7 +173,7 @@ public class Main {
                 listBusOnRoute.get(i).setStatusPark();
                 listBusInPark.add(listBusOnRoute.get(i));
                 listBusOnRoute.remove(i);
-                System.out.println("Автобус успешно отправлен!");
+                System.out.println("Bus successfully sent !");
                 break;
             }
         }
@@ -179,36 +181,26 @@ public class Main {
 
     public static void searchDriver(ArrayList<Bus> listAllBus){
         Scanner str = new Scanner(System.in);
-        System.out.println("Введите Фамилию Имя водителя которого хотите найти ");
+        System.out.println("Enter last name of the driver you want to search ");
         String name = str.nextLine();
         for(int i = 0; i < listAllBus.size(); i++) {
             if (name.equals(listAllBus.get(i).getNameSurname())) {
-                System.out.println("Его автобус с номером: " + listAllBus.get(i).getNumberBus());
-                System.out.println("Его маршрут: " + listAllBus.get(i).getNumberRoute());
+                System.out.println("His bus number : " + listAllBus.get(i).getNumberBus());
+                System.out.println("His route : " + listAllBus.get(i).getNumberRoute());
                 return;
             }
             if (i == listAllBus.size()- 1) {
-                System.out.println("Нет такого водителя");
+                System.out.println("There is no such driver");
             }
         }
-
-    }
-
-    public static void gasolineCosts(ArrayList<Route> listRoute) {
-        double sum=0;
-        for (int i = 0; i < listRoute.size(); i++) {
-            for(int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++)
-                sum += (listRoute.get(i).getLength()/100)*listRoute.get(i).getBusThisRoute().get(j).getConsumptionGasoline();
-        }
-        System.out.println("Общие затраты на бензин " + sum);
     }
 
     public static void gasolineCostsOnRoute(ArrayList<Route> listRoute) {
-        double sum=0;
-        double allSum=0;
+        double sum = 0;
+        double allSum = 0;
         try {
             Scanner in = new Scanner(System.in);
-            System.out.println("Выбирите номер маршрута");
+            System.out.println("Enter the number of the route");
             int numberRoute = in.nextInt();
             for (int i = 0; i < listRoute.size(); i++) {
                 for (int j = 0; j < listRoute.get(i).getBusThisRoute().size(); j++) {
@@ -218,15 +210,15 @@ public class Main {
                     }
                 }
             }
-            System.out.println("Общие затраты на бензин  " + allSum);
-            System.out.println("Затраты на бензин на маршруте '" + numberRoute + "' = " + sum);
+            System.out.println("The total costs of petrol  " + allSum);
+            System.out.println("The cost of gasoline on the route '" + numberRoute + "' = " + sum);
         } catch (Exception e) {
             System.out.println(" Incorrect input try again later ");
         }
 
     }
 
-    public static void puts() {
+    public static void menu() {
         System.out.println();
         System.out.println("a) добавление автобуса из парка в список выехавших на маршрут\n" +
                 "b) исключение автобуса из списка выехавших на маршрут и возвращение его в парк \n" +
@@ -242,7 +234,7 @@ public class Main {
     public static void minBusesOnRoute(ArrayList<Route> listRoute) {
         try {
             Scanner in = new Scanner(System.in);
-            System.out.println("Введите номер маршрута");
+            System.out.println("Enter the number of the route you want to check");
             int numberRoute = in.nextInt();
             for (int i = 0; i < listRoute.size(); i++) {
                 if (numberRoute == listRoute.get(i).getNumber()) {

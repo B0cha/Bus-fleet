@@ -49,16 +49,17 @@ public class Route {
     public void addBusRoute(Bus bus) {
         this.busThisRoute.add(bus);
     }
+
     public ArrayList<Bus> getBusThisRoute() {
         return busThisRoute;
     }
 
     public void adequacyBusesOnRoute() {
         getStatusAmountBus();
-        System.out.println("Количество автобусов на маршруте : " + statusAmountBus);
+        System.out.println("The number of buses on the route: " + statusAmountBus);
         if (statusAmountBus < minAmountBus) {
-            System.out.println("Автобусов недостаточно");
+            System.out.println("Coach is not enough");
         }
-        else System.out.println("Автобусов достаточно");
+        else System.out.println("Coach enough");
     }
 }

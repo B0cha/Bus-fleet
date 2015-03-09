@@ -10,7 +10,7 @@ public class Bus {
     /** Number route */
     private int numberRoute;
 
-    private String status = "В парке";
+    private String status = "In the park";
 
     public Bus(int numberBus, double consumptionGasoline, String nameSurname, int numberRoute) {
         this.numberBus = numberBus;
@@ -47,10 +47,10 @@ public class Bus {
     }
 
     public void setStatusPark () {
-        this.status = "В парке";
+        this.status = "In the park";
     }
     public void setStatusRoute () {
-        this.status = "На маршруте";
+        this.status = "On the route";
     }
 
 }
