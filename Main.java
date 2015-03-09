@@ -30,20 +30,24 @@ public class Main {
                             "2) List of buses in the park\n" +
                             "3) List of bus route\n" +
                             "4) List of routes");
-                    int loko = put.nextInt();
-                    switch (loko) {
-                        case 1:
-                            viewListAllBus(listAllBus);
-                            break;
-                        case 2:
-                            viewListBusInParK(listBusInPark);
-                            break;
-                        case 3:
-                            viewListBusOnRoute(listBusOnRoute);
-                            break;
-                        case 4:
-                            viewListRoute(listRoute);
-                            break;
+                    try {
+                        int loko = put.nextInt();
+                        switch (loko) {
+                            case 1:
+                                viewListAllBus(listAllBus);
+                                break;
+                            case 2:
+                                viewListBusInParK(listBusInPark);
+                                break;
+                            case 3:
+                                viewListBusOnRoute(listBusOnRoute);
+                                break;
+                            case 4:
+                                viewListRoute(listRoute);
+                                break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input try again later");
                     }
                     break;
                 case "d":
